@@ -1,0 +1,28 @@
+{% extends 'account/base.html' %}
+
+{% block content %}
+<h1>This is Book page.</h1>
+<div class="container">
+
+<div class="row">
+{% for book in books %}
+    {% ifequal forloop.counter|divisibleby:"3" True %} 
+        <div class="row">
+    {% endifequal %}
+    <div class="col-sm">
+    <div class="card" style="width: 18rem;">
+      <img class="card-img-top" src="{{ book.image_url }}" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">{{book.title}}</h5>
+        <p class="card-text">{{ book.description }}</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+    </div>
+    {% ifequal forloop.counter|divisibleby:"3" True %} 
+        </div>
+    {% endifequal %}
+{% endfor %}
+
+
+{% endblock %}
