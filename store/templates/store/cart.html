@@ -1,0 +1,17 @@
+{% extends 'account/base.html' %}
+
+{% block content %}
+
+<div class="container">
+
+<h1>This is Cart page.</h1>
+    <ol>
+    {% for item in cart %}
+        <li>
+            {{item}} - <a href="{% url 'remove_from_cart' item.book_id %}">Remove</a>
+        </li>
+    {% endfor %}
+    <ol>
+</div>
+
+{% endblock %}
