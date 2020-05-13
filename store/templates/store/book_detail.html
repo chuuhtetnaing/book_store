@@ -17,10 +17,31 @@
         <p>Published Year: {{ book.publication_year }} </p>
         <p>Book Format: {{ book.book_format }} </p>
         <p>Rating: {{book.average_rating}}</p>
-        <a href="{% url 'store:books' 'all' %}">Back</a>
+        {% if book.book_id in cart %}
+            <button type="button" class="btn btn-secondary" disabled>Added</button>
+        {% else %}
+            <a href="{% url 'store:add_to_cart' book.book_id %}" class="btn btn-primary">Add To Cart</a>
+        {% endif %}
+        <a href="{% url 'store:books' 'all' %}" class="btn btn-secondary">Back</a>
     </div>
     <div class="col-2">
     </div>
+  </div>
+</div>
+
+<br/>
+<br/>
+<h3>Customers who love this book also love</h3>
+<br/>
+<div class="container">
+  <div class="row">
+    {% for recommendation_book in recommendation_books %}
+    <div class="col-4">
+        <img class="img-thumbnail" src="{{ recommendation_book.image_url }}" alt="Card image cap">
+        <a href="{% url 'store:view_book' book.book_id %}"><p>{{ recommendation_book.title }} </p></a>
+    </div>
+    {% endfor %}
+    
   </div>
 </div>
 

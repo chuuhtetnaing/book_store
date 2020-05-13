@@ -4,22 +4,31 @@
 
 
 <div class="container">
+  <div class="row">
+    <div class="col-9">
+    </div>
+    <div class="col-3">
+      <small>You've {{cart|length}} items in your shopping cart</small>
+      <a href="{% url 'store:checkout' %}" class="btn btn-primary">Proceed to checkout</a>
+    </div>
+  </div>
   {% for item in cart %}
   <div class="row">
-    <div class="col-2">
+    <div class="col-1">
     </div>
     <div class="col-2">
         <img class="img-thumbnail" src="{{ item.image_url }}" alt="Card image cap">
     </div>
-    <div class="col-6">
+    <div class="col-4">
         <p>Book Title: {{ item.title }} </p>
         <p>Publisher: {{ item.publisher }} </p>
         <p>Published Year: {{ item.publication_year }} </p>
         <p>Book Format: {{ item.book_format }} </p>
     </div>
-    <div class="col-2">
+    <div class="col-3">
         <a href="{% url 'store:remove_from_cart' item.book_id %}">Remove</a>
     </div>
+    
   </div>
   <br/>
   {% endfor %}
