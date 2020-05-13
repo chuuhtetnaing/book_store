@@ -14,6 +14,11 @@ def home(request):
     return render(request, 'store/home.html', context)
 
 
+def home(request):
+    context = {}
+    return render(request, 'store/home.html', context)
+
+
 def books(request, genre):
 
     if request.method == 'POST':
