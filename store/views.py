@@ -4,6 +4,11 @@ from django.contrib import messages
 from store.models import Book, Genre
 from django.core.paginator import Paginator
 
+def home(request):
+    context = {}
+    return render(request, 'store/home.html', context)
+
+
 def books(request, genre):
     if genre == 'all':
         books = Book.objects.all()
@@ -18,7 +23,7 @@ def books(request, genre):
     page_obj = paginator.get_page(page_number)
     cart = request.session.get('cart')
     context = {'page_obj': page_obj, "cart": cart, "genre": genre}
-    return render(request, 'store/home.html', context)
+    return render(request, 'store/books.html', context)
 
 def view_book(request, book_id):
     book = Book.objects.get(book_id=book_id)
