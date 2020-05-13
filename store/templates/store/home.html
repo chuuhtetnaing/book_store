@@ -1,34 +1,58 @@
 {% extends 'account/base.html' %}
 
+
 {% block content %}
-<h1>This is Book page.</h1>
-{{ cart }}
+<h1 class="text-center">{{genre|title}} Books</h1>
+
 <div class="container">
 
 
-{% for book in books %}
+{% for book in page_obj %}
 
-    {% ifequal forloop.counter0|divisibleby:"3" True %} 
+    {% ifequal forloop.counter0|divisibleby:"4" True %} 
     <div class="row">
     {% endifequal %}
-        <div class="col-sm">
-            <div class="card" style="width: 18rem;">
-              <img class="card-img-top" src="{{ book.image_url }}" alt="Card image cap">
+        <div class="col-sm ">
+            <!-- d-flex align-items-stretch -->
+            <div class="card" style="width: 12rem;">
+              <img class="card-img-top img-thumbnail" src="{{ book.image_url }}" alt="Card image cap">
               <div class="card-body">
-                <h5 class="card-title">{{book.title}}</h5>
-                <p class="card-text">{{ book.description }}</p>
+                <a href="{% url 'store:view_book' book.book_id %}"><h5 class="card-title">{{book.title}}</h5></a>
+                {% load store_tag %}
+                <p class="card-text">{% cut_text book.description %}</p>
+                <div class="text-center">
                 {% if book.book_id in cart %}
-                    <p>Added To Cart</p>
+                    <button type="button" class="btn btn-secondary" disabled>Added</button>
                 {% else %}
                     <a href="{% url 'store:add_to_cart' book.book_id %}" class="btn btn-primary">Add To Cart</a>
                 {% endif %}
+                </div>  
               </div>
             </div>
         </div>
-    {% ifequal forloop.counter|divisibleby:"3" True %} 
+    {% ifequal forloop.counter|divisibleby:"4" True %} 
     </div>
     {% endifequal %}
 {% endfor %}
 
 </div>
+<br/>
+
+<nav aria-label="Page navigation example" >
+  <ul class="pagination justify-content-center">
+    {% if page_obj.has_previous %}
+        <li class="page-item"><a class="page-link" href="?page=1">&laquo; First</a></li>
+        <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a></li>
+        <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a></li>
+    {% endif %}
+    <li class="page-item active"><a class="page-link" href="{{ page_obj.number }}">{{ page_obj.number }}</a></li>
+    {% if page_obj.has_next %}
+        <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">{{page_obj.next_page_number}}</a></li>
+        <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a></li>
+        <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Last &raquo;</a></li>
+    {% endif %}
+
+  </ul>
+</nav>
+
 {% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'account/base.html' %}
+
+{% block content %}
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-2">
+    </div>
+    <div class="col-2">
+        <img class="img-thumbnail" src="{{ book.image_url }}" alt="Card image cap">
+    </div>
+    <div class="col-6">
+        <p>Book Title: {{ book.title }} </p>
+        <p>Publisher: {{ book.publisher }} </p>
+        <p>Published Year: {{ book.publication_year }} </p>
+        <p>Book Format: {{ book.book_format }} </p>
+        <p>Rating: {{book.average_rating}}</p>
+        <a href="{% url 'store:books' 'all' %}">Back</a>
+    </div>
+    <div class="col-2">
+    </div>
+  </div>
+</div>
+
+{% endblock %}

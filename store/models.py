@@ -29,3 +29,10 @@ class Book(models.Model):
 
     def __str__(self):
         return f"{self.title}"
+
+class Genre(models.Model):
+    books = models.ManyToManyField(Book, related_name="genres")
+    genre = models.CharField(max_length=200)
+
+    def __str__(self):
+        return f"{self.genre}"

@@ -2,16 +2,30 @@
 
 {% block content %}
 
-<div class="container">
 
-<h1>This is Cart page.</h1>
-    <ol>
-    {% for item in cart %}
-        <li>
-            {{item}} - <a href="{% url 'store:remove_from_cart' item.book_id %}">Remove</a>
-        </li>
-    {% endfor %}
-    <ol>
+<div class="container">
+  {% for item in cart %}
+  <div class="row">
+    <div class="col-2">
+    </div>
+    <div class="col-2">
+        <img class="img-thumbnail" src="{{ item.image_url }}" alt="Card image cap">
+    </div>
+    <div class="col-6">
+        <p>Book Title: {{ item.title }} </p>
+        <p>Publisher: {{ item.publisher }} </p>
+        <p>Published Year: {{ item.publication_year }} </p>
+        <p>Book Format: {{ item.book_format }} </p>
+    </div>
+    <div class="col-2">
+        <a href="{% url 'store:remove_from_cart' item.book_id %}">Remove</a>
+    </div>
+  </div>
+  <br/>
+  {% endfor %}
+
 </div>
+
+
 
 {% endblock %}

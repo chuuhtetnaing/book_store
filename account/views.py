@@ -17,17 +17,17 @@ def login_user(request):
         if user is not None:
             login(request, user)
             messages.success(request, ("Welcome!"))
-            return redirect('home')
+            return redirect('account:home')
         else:
             messages.success(request, ("Error Logging In - Please Try Again"))
-            return redirect('login')
+            return redirect('account:login')
     else:
         return render(request, 'account/login.html', {})
 
 def logout_user(request):
     logout(request)
     messages.success(request, ('You Have Been Logget Out.'))
-    return redirect('home')
+    return redirect('account:home')
 
 def register_user(request):
     if request.method == 'POST':
@@ -39,7 +39,7 @@ def register_user(request):
             user = authenticate(username = username, password= password)
             login(request, user)
             messages.success(request, ("You Have Registered!"))
-            return redirect('home')
+            return redirect('account:home')
     else:
         form = SignUpForm()
 
@@ -52,7 +52,7 @@ def edit_profile(request):
         if form.is_valid():
             form.save()
             messages.success(request, ("You Have Successfully Edited Your Profile!"))
-            return redirect('home')
+            return redirect('account:home')
     else:
         form = EditProfileForm(instance=request.user)
 
@@ -66,7 +66,7 @@ def change_password(request):
             form.save()
             update_session_auth_hash(request, form.user)
             messages.success(request, ("You Have Successfully Edited Your Password!"))
-            return redirect('home')
+            return redirect('account:home')
     else:
         form = ChangeUserPasswordForm(user=request.user)
 
