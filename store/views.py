@@ -36,4 +36,4 @@ def remove_from_cart(request, book_id):
     orders = request.session.get('cart')
     orders.remove(str(book_id))
     request.session['cart'] = orders
-    return redirect('cart_page')
+    return redirect('store/cart_page')

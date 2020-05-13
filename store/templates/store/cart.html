@@ -8,7 +8,7 @@
     <ol>
     {% for item in cart %}
         <li>
-            {{item}} - <a href="{% url 'remove_from_cart' item.book_id %}">Remove</a>
+            {{item}} - <a href="{% url 'store:remove_from_cart' item.book_id %}">Remove</a>
         </li>
     {% endfor %}
     <ol>

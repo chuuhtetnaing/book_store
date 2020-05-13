@@ -5,7 +5,7 @@
     
     <h1 class="text-center">{{form.username.value}}'s Profile</h1>
 
-    <form method="POST" action="{% url 'edit_profile' %}">
+    <form method="POST" action="{% url 'account:edit_profile' %}">
         {% csrf_token %}
 
         {% if form.errors %}
@@ -31,7 +31,7 @@
         <input type="submit" value="Edit" class="btn btn-secondary btn-block">
     </form>
     <br/>
-    <p class="text-center"><small><a href="{% url 'change_password' %}">Click Here</a> To Change Your Password</small></p>
+    <p class="text-center"><small><a href="{% url 'account:change_password' %}">Click Here</a> To Change Your Password</small></p>
 </div>
 
 {% endblock %}

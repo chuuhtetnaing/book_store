@@ -5,29 +5,30 @@
 {{ cart }}
 <div class="container">
 
-<div class="row">
+
 {% for book in books %}
-    {% ifequal forloop.counter|divisibleby:"3" True %} 
-        <div class="row">
+
+    {% ifequal forloop.counter0|divisibleby:"3" True %} 
+    <div class="row">
     {% endifequal %}
-    <div class="col-sm">
-        <div class="card" style="width: 18rem;">
-          <img class="card-img-top" src="{{ book.image_url }}" alt="Card image cap">
-          <div class="card-body">
-            <h5 class="card-title">{{book.title}}</h5>
-            <p class="card-text">{{ book.description }}</p>
-            {% if book.book_id in cart %}
-                <p>Added To Cart</p>
-            {% else %}
-                <a href="{% url 'add_to_cart' book.book_id %}" class="btn btn-primary">Add To Cart</a>
-            {% endif %}
-          </div>
+        <div class="col-sm">
+            <div class="card" style="width: 18rem;">
+              <img class="card-img-top" src="{{ book.image_url }}" alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title">{{book.title}}</h5>
+                <p class="card-text">{{ book.description }}</p>
+                {% if book.book_id in cart %}
+                    <p>Added To Cart</p>
+                {% else %}
+                    <a href="{% url 'store:add_to_cart' book.book_id %}" class="btn btn-primary">Add To Cart</a>
+                {% endif %}
+              </div>
+            </div>
         </div>
-    </div>
     {% ifequal forloop.counter|divisibleby:"3" True %} 
-        </div>
+    </div>
     {% endifequal %}
 {% endfor %}
 
-
+</div>
 {% endblock %}

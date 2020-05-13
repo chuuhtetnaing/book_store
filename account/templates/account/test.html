@@ -3,7 +3,7 @@
 {% block content %}
 <h2>Register</h2>
 
-<form method="POST" action="{% url 'test' %}">
+<form method="POST" action="{% url 'account:test' %}">
     {% csrf_token %}
 
     {% if form.errors %}
