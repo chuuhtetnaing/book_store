@@ -38,7 +38,7 @@
     {% for recommendation_book in recommendation_books %}
     <div class="col-4">
         <img class="img-thumbnail" src="{{ recommendation_book.image_url }}" alt="Card image cap">
-        <a href="{% url 'store:view_book' book.book_id %}"><p>{{ recommendation_book.title }} </p></a>
+        <a href="{% url 'store:view_book' recommendation_book.book_id %}"><p>{{ recommendation_book.title }} </p></a>
     </div>
     {% endfor %}
     
