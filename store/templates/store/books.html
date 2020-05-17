@@ -28,9 +28,9 @@
     {% ifequal forloop.counter0|divisibleby:"4" True %} 
     <div class="row">
     {% endifequal %}
-        <div class="col-sm ">
+        <div class="col-md mt-sm-4 mt-md-3">
             <!-- d-flex align-items-stretch -->
-            <div class="card" style="width: 12rem;">
+            <div class="card">
               <img class="card-img-top img-thumbnail" src="{{ book.image_url }}" alt="Card image cap">
               <div class="card-body">
                 <a href="{% url 'store:view_book' book.book_id %}"><h5 class="card-title">{{book.title}}</h5></a>
