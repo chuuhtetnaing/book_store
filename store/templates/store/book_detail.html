@@ -6,12 +6,12 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-2">
+    <div class="col-md-2">
     </div>
-    <div class="col-2">
+    <div class="col-md-2">
         <img class="img-thumbnail" src="{{ book.image_url }}" alt="Card image cap">
     </div>
-    <div class="col-6">
+    <div class="col-md-6">
         <p>Book Title: {{ book.title }} </p>
         <p>Publisher: {{ book.publisher }} </p>
         <p>Published Year: {{ book.publication_year }} </p>
@@ -24,18 +24,20 @@
         {% endif %}
         <a href="{% url 'store:books' 'all' %}" class="btn btn-secondary">Back</a>
     </div>
-    <div class="col-2">
+    <div class="col-md-2">
     </div>
   </div>
 </div>
 
 <br/>
 <br/>
-<h3>Customers who love this book also love</h3>
-<br/>
+
+{% if itemset1_recommendation_books %}
+<hr>
+<h5>Customers who love this book also love</h5>
 <div class="container">
   <div class="row">
-    {% for recommendation_book in recommendation_books %}
+    {% for recommendation_book in itemset1_recommendation_books %}
     <div class="col-4">
         <img class="img-thumbnail" src="{{ recommendation_book.image_url }}" alt="Card image cap">
         <a href="{% url 'store:view_book' recommendation_book.book_id %}"><p>{{ recommendation_book.title }} </p></a>
@@ -43,6 +45,40 @@
     {% endfor %}
     
   </div>
+<small>These recommendations came from MBA. We're showing three consequents(1-itemset) for current antecedent.</small>
 </div>
 
+{% endif %}
+
+{% if itemset3_recommendation_books %}
+<hr>
+<h5>Frequently bought together</h5>
+<div class="container">
+  <div class="row">
+    {% for recommendation_book in itemset3_recommendation_books %}
+    <div class="col-4">
+        <img class="img-thumbnail" src="{{ recommendation_book.image_url }}" alt="Card image cap">
+        <a href="{% url 'store:view_book' recommendation_book.book_id %}"><p>{{ recommendation_book.title }} </p></a>
+    </div>
+    {% endfor %}
+    
+  </div>
+<small>These recommendations also came from MBA. However, these three recommend books came from one consequent(3-itemset) for current antecedent.</small>
+</div>
+{% endif %}
+
+<hr>
+<h5>Books related to this book</h5>
+<div class="container">
+  <div class="row">
+    {% for recommendation_book in item_to_item_recommendation_books %}
+    <div class="col-4">
+        <img class="img-thumbnail" src="{{ recommendation_book.image_url }}" alt="Card image cap">
+        <a href="{% url 'store:view_book' recommendation_book.book_id %}"><p>{{ recommendation_book.title }} </p></a>
+    </div>
+    {% endfor %}
+    
+  </div>
+<small>These recommendations came from item-to-item collaborative filtering system. We've extracted three nearest neighbor from KNNBaseline algorithm.</small>
+</div>
 {% endblock %}
