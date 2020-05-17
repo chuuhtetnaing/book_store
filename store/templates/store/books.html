@@ -28,7 +28,7 @@
     {% ifequal forloop.counter0|divisibleby:"4" True %} 
     <div class="row">
     {% endifequal %}
-        <div class="col-md mt-sm-4 mt-md-3">
+        <div class="col-md mt-4">
             <!-- d-flex align-items-stretch -->
             <div class="card">
               <img class="card-img-top img-thumbnail" src="{{ book.image_url }}" alt="Card image cap">
@@ -38,7 +38,9 @@
                 <p class="card-text">{% cut_text book.description %}</p>
                 <div class="text-center">
                 {% if book.book_id in cart %}
-                    <button type="button" class="btn btn-secondary" disabled>Added</button>
+                    <svg class="bi bi-check" width="2em" height="2em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd" d="M13.854 3.646a.5.5 0 010 .708l-7 7a.5.5 0 01-.708 0l-3.5-3.5a.5.5 0 11.708-.708L6.5 10.293l6.646-6.647a.5.5 0 01.708 0z" clip-rule="evenodd"/>
+                    </svg>
                 {% else %}
                     <a href="{% url 'store:add_to_cart' book.book_id %}" class="btn btn-primary">Add To Cart</a>
                 {% endif %}
