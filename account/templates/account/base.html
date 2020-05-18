@@ -52,7 +52,7 @@
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Recommendation System</a>
+            <a class="nav-link" href="{% url 'account:guide' %}">Recommendation System</a>
           </li>
           
           {% if "/account/home" == request.path %}
@@ -91,6 +91,9 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{% url 'account:edit_profile' %}">Edit Profile</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'account:purchase_history' %}">Purchase History</a>
           </li>     
           {% endif %}
           {% if '/store/view_cart' == request.path %}

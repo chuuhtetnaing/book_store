@@ -3,6 +3,28 @@ from django.contrib.auth import authenticate, login, logout, update_session_auth
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordChangeForm
 from django.contrib import messages
 from .forms import SignUpForm, EditProfileForm, ChangeUserPasswordForm
+from store.models import Book
+from django.conf import settings
+from surprise import dump
+import os
+
+_, cf_user_to_user = dump.load(os.path.join(settings.BASE_DIR, 'cf_user_to_user.sav'))
+
+user_ac5 = [22465085,
+ 18775169,
+ 11543195,
+ 11275,
+ 15751404,
+ 2570856,
+ 14817,
+ 13055592,
+ 13603717,
+ 39242,
+ 88071,
+ 51964,
+ 13453029]
+
+user_7b2 = [2981076, 29056083, 3876]
 
 # Create your views here.
 
@@ -58,6 +80,30 @@ def edit_profile(request):
 
     context = {'form': form}
     return render(request, 'account/edit_profile.html', context)
+
+def purchase_history(request):
+    history = list()
+    recommendation = list()
+    if (request.user.is_authenticated) and (request.user.username == 'ac5b887c1d04bbfe9bbc8ce4b8f968be'):
+        for id in user_ac5:
+            history.append(Book.objects.get(book_id=id))
+        for id in [predicted[0] for predicted in cf_user_to_user[request.user.username]]:
+            recommendation.append(Book.objects.get(book_id=id))
+    elif (request.user.is_authenticated) and (request.user.username == '7b2a80e516033af7b8f1a11d29067f4e'):
+        for id in user_7b2:
+            history.append(Book.objects.get(book_id=id))
+        for id in [predicted[0] for predicted in cf_user_to_user[request.user.username]]:
+            recommendation.append(Book.objects.get(book_id=id))
+    else:
+        history = None
+
+
+    context = {'purchase_history': history, 'user_to_user_recommendation_books': recommendation}
+    return render(request, 'account/purchase_history.html', context)
+
+def guide(request):
+    context = {}
+    return render(request, 'account/guide.html', context)
 
 def change_password(request):
     if request.method == 'POST':

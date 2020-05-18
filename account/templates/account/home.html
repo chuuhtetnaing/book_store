@@ -1,7 +1,7 @@
 {% extends 'account/base.html' %}
 
 {% block content %}
-<h1 class="text-center">Hello {{ user.username }}!</h1>
+<h1 class="text-center">Hello {{ user.first_name }} {{ user.last_name }}!</h1>
 
 {% if user.is_authenticated %}
 

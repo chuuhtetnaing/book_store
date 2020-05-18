@@ -1,0 +1,49 @@
+{% extends 'account/base.html' %}
+
+{% block content %}
+
+<h1 class="text-center">Your Purchased History</h1>
+<br>
+<br>
+{% if purchase_history %}
+
+    <div class="container">
+      
+{% for item in purchase_history %}
+    
+      <div class="row">
+        <div class="col-lg-2 offset-lg-1 col-md-2 offset-md-1 ">
+            <img class="img-thumbnail" src="{{ item.image_url }}" alt="Card image cap">
+        </div>
+        <div class="col-lg-5 col-md-5">
+            <p><b>Book Title:</b> {{ item.title }} </p>
+            <p><b>Publisher:</b> {{ item.publisher }} </p>
+            <p><b>Published Year:</b> {{ item.publication_year }} </p>
+            <p><b>Book Format:</b> {{ item.book_format }} </p>
+        </div>
+
+      </div>
+      <hr>
+      <br/>
+{% endfor %}
+
+    </div>
+
+<hr>
+<h5>You may also like</h5>
+<div class="container">
+  <div class="row">
+    {% for recommendation_book in user_to_user_recommendation_books %}
+    <div class="col-4">
+        <img class="img-thumbnail" src="{{ recommendation_book.image_url }}" alt="Card image cap">
+        <a href="{% url 'store:view_book' recommendation_book.book_id %}"><p>{{ recommendation_book.title }} </p></a>
+    </div>
+    {% endfor %}
+    
+  </div>
+<small>These recommendations came from user-to-user collaborative filtering system. We've extracted three highest rating predicted items for current user.</small>
+</div>    
+
+{% endif %}
+
+{% endblock %}
