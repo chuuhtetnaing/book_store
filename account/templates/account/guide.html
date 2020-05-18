@@ -5,21 +5,51 @@
 <br>
 <h4>What did we use?</h4>
 <p>In our Online Bookstore System, we've developed using Django web framework where we've integrated the recommendation system. For recommendation techniques, we've used</p>
-<ul>
+<ol>
     <li>Market Basket Analysis</li>
     <li>Collaborative Filtering System</li>
-</ul>
+</ol>
 
 <hr>
-<h4>Market Basket Analysis</h4>
+<h4>1 Market Basket Analysis</h4>
 
+<b><p>1.1 Customers who love this book also love</p></b>
+<b><i><p>Amazon Implementation</p></i></b>
+{% load static %}
+
+<img src="{% static 'view_1.png' %}" class="img-fluid img-thumbnail" alt="My image">
+<img src="{% static 'view_2.png' %}" class="img-fluid img-thumbnail" alt="My image">
 <hr>
-<h4>Collaborative Filtering System</h4>
+<b><i><p>Our Equivalent Implementation</p></i></b>
+<img src="{% static 'our_view.png' %}" class="img-fluid img-thumbnail" alt="My image">
+<hr>
+<b><p>1.2 Frequently bought together</p></b>
+<b><i><p>Amazon Implementation</p></i></b>
+<img src="{% static 'frequently_bought_items_1.png' %}" class="img-fluid img-thumbnail" alt="My image">
+<img src="{% static 'frequently_bought_items_2.png' %}" class="img-fluid img-thumbnail" alt="My image">
+<hr>
+<b><i><p>Our Equivalent Implementation</p></i></b>
+<img src="{% static 'our_freq_1.png' %}" class="img-fluid img-thumbnail" alt="My image">
+<img src="{% static 'our_freq_2.png' %}" class="img-fluid img-thumbnail" alt="My image">
+<hr>
 
-<br>
-<h6>Item-To-Item Collaborative Filtering</h6>
 
-<br>
-<h6>User-To-User Collaborative Filtering</h6>
-
+<h4>2 Collaborative Filtering System</h4>
+<b><p>2.1 Item-To-Item Collaborative Filtering</p></b>
+<b><i><p>Amazon Implementation</p></i></b>
+<img src="{% static 'frequently_bought_items_1.png' %}" class="img-fluid img-thumbnail" alt="My image">
+<img src="{% static 'frequently_bought_items_related_item.png' %}" class="img-fluid img-thumbnail" alt="My image">
+<hr>
+<b><i><p>Our Equivalent Implementation</p></i></b>
+<img src="{% static 'our_freq_1.png' %}" class="img-fluid img-thumbnail" alt="My image">
+<img src="{% static 'our_item_to_item.png' %}" class="img-fluid img-thumbnail" alt="My image">
+<hr>
+<b><p>2.2 User-To-User Collaborative Filtering</p></b>
+<b><i><p>Amazon Implementation</p></i></b>
+<img src="{% static 'amazon_user_to_user.png' %}" class="img-fluid img-thumbnail" alt="My image">
+<hr>
+<b><i><p>Our Equivalent Implementation</p></i></b>
+<img src="{% static 'our_user_to_user_1.png' %}" class="img-fluid img-thumbnail" alt="My image">
+<img src="{% static 'our_user_to_user_2.png' %}" class="img-fluid img-thumbnail" alt="My image">
+<hr>
 {% endblock %}
