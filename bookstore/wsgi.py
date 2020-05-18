@@ -13,7 +13,7 @@ from django.core.wsgi import get_wsgi_application
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'bookstore.settings')
 
-sys.path.append('/home/chuuhtetnaing_gmail_com/django/bookstore')
-sys.path.append('/home/chuuhtetnaing_gmail_com/django/bookstore/bookstore')
+sys.path.append('/home/ubuntu/django/bookstore')
+sys.path.append('/home/ubuntu/django/bookstore/bookstore')
 application = get_wsgi_application()
 # application = DjangoWhiteNoise(application)
