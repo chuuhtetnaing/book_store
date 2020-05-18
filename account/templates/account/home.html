@@ -11,4 +11,19 @@
 
 {% endif %}
 
+<hr>
+<h5>Recommended books for you</h5>
+<div class="container">
+  <div class="row">
+    {% for recommendation_book in user_to_user_recommendation_books %}
+    <div class="col-4">
+        <img class="img-thumbnail" src="{{ recommendation_book.image_url }}" alt="Card image cap">
+        <a href="{% url 'store:view_book' recommendation_book.book_id %}"><p>{{ recommendation_book.title }} </p></a>
+    </div>
+    {% endfor %}
+    
+  </div>
+<small>These recommendations came from user-to-user collaborative filtering system. We've extracted three highest rating predicted items for current user.</small>
+</div>
+
 {% endblock %}

@@ -29,7 +29,18 @@ user_7b2 = [2981076, 29056083, 3876]
 # Create your views here.
 
 def home(request):
-    return render(request, 'account/home.html', {})
+    recommendation = list()
+    if (request.user.is_authenticated) and (request.user.username == 'ac5b887c1d04bbfe9bbc8ce4b8f968be'):
+        for id in [predicted[0] for predicted in cf_user_to_user[request.user.username]]:
+            recommendation.append(Book.objects.get(book_id=id))
+    elif (request.user.is_authenticated) and (request.user.username == '7b2a80e516033af7b8f1a11d29067f4e'):
+        for id in [predicted[0] for predicted in cf_user_to_user[request.user.username]]:
+            recommendation.append(Book.objects.get(book_id=id))
+    else:
+        history = None
+
+    context = {'user_to_user_recommendation_books': recommendation}
+    return render(request, 'account/home.html', context)
 
 def login_user(request):
     if request.method == 'POST':
