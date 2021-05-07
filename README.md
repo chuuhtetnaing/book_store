@@ -43,3 +43,5 @@ The implementation learns from amazon ecommerce gaint which is also one of the b
 
 3. User-To-User Collaborative Filtering
 - Recommended books for you
+
+*For MBA model, the rules.sav file is exceeded the file size limit and Git LFS is used to overcome the problem.*
