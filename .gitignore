@@ -4,5 +4,4 @@ venv/
 **/migrations/**
 !**/migrations
 !**/migrations/__init__.py
-rules.sav
 db.sqlite3
